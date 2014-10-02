@@ -180,12 +180,6 @@ $win.on 'app:keyup', (event, keyCode) ->
         gui.Window.get().resizeTo $state.start.width, $state.start.height
         $win.trigger 'app:modal', 'Restore size.'
 
-    when 82 # R, Reload
-      unless $state.klock
-        if window.confirm 'リロードしますか?'
-          $win.trigger 'app:modal', 'Reload app.'
-          $win.trigger 'app:init'
-
     when 27 # Esc, Key-Lock
       if $state.klock = !$state.klock
         $win.trigger 'app:modal', 'Lock. (Esc to Toggle)'
