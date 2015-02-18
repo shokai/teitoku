@@ -8,6 +8,7 @@ gui = require 'nw.gui'
 
 $win = $ window
 $doc = $ document
+$title = gui.Window.get().title
 $frame = null
 $frwin = null
 $forms = null
@@ -132,6 +133,11 @@ $win.on 'app:capture', (event, options = {}) ->
       if err
         localStorage.removeItem 'savepath'
         $win.trigger 'app:modal', err.message
+        return
+      gui.Window.get().title = "#{$title} - capture success!"
+      setTimeout ->
+        gui.Window.get().title = $title
+      , 1000
   else
     localStorage.removeItem 'savepath'
     $win.trigger 'app:modal', 'Invalid save path.'
