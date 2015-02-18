@@ -7,6 +7,7 @@
 /vendor
 /build
 /lib
+/cache
 
 /npm-debug.log
 /node_modules
