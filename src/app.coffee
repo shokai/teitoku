@@ -132,6 +132,10 @@ $win.on 'app:capture', (event, options = {}) ->
       if err
         localStorage.removeItem 'savepath'
         $win.trigger 'app:modal', err.message
+        return
+      new Notification "capture success",
+        icon: dest
+        body: dest.split('/').pop()
   else
     localStorage.removeItem 'savepath'
     $win.trigger 'app:modal', 'Invalid save path.'
