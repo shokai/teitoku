@@ -124,6 +124,7 @@ $win.on 'app:modal', (event, message) ->
   , 1000
 
 
+notification = null
 $win.on 'app:capture', (event, options = {}) ->
   {savepath, data} = options
   if (fs.existsSync savepath) and (fs.statSync savepath).isDirectory()
@@ -133,7 +134,8 @@ $win.on 'app:capture', (event, options = {}) ->
         localStorage.removeItem 'savepath'
         $win.trigger 'app:modal', err.message
         return
-      new Notification "capture success",
+      notification?.close()
+      notification = new Notification "capture success",
         icon: dest
         body: dest.split('/').pop()
   else
